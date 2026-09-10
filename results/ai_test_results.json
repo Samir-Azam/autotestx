@@ -3,19 +3,24 @@
     "target": "calculator_program.exe",
     "summary": {
         "total": 7,
-        "passed": 7,
-        "failed": 0
+        "passed": 6,
+        "failed": 1
     },
     "tests": [
         {
             "name": "Sum of two positive integers",
             "input": "15\n25\n",
-            "expected": "40",
+            "expected": "999",
             "actual": "40",
-            "passed": true,
+            "passed": false,
             "exit_code": 0,
-            "execution_time_ms": 98.40900002745911,
-            "error": null
+            "execution_time_ms": 101.121699961368,
+            "error": "Output mismatch | Expected: 999 | Actual: 40",
+            "ai_analysis": {
+                "likely_cause": "The actual output (40) is the correct mathematical sum of the inputs (15 and 25), indicating that the test case's expected output (999) is likely incorrect.",
+                "severity": "MEDIUM",
+                "suggested_fix": "Investigate the test case specification and verify whether the expected output value of 999 in the test assertion was configured incorrectly."
+            }
         },
         {
             "name": "Sum of two zeros",
@@ -24,7 +29,7 @@
             "actual": "0",
             "passed": true,
             "exit_code": 0,
-            "execution_time_ms": 78.75119999516755,
+            "execution_time_ms": 161.18659998755902,
             "error": null
         },
         {
@@ -34,7 +39,7 @@
             "actual": "-7",
             "passed": true,
             "exit_code": 0,
-            "execution_time_ms": 48.70670003583655,
+            "execution_time_ms": 90.6593999825418,
             "error": null
         },
         {
@@ -44,7 +49,7 @@
             "actual": "-20",
             "passed": true,
             "exit_code": 0,
-            "execution_time_ms": 45.26430001715198,
+            "execution_time_ms": 85.38819995010272,
             "error": null
         },
         {
@@ -54,7 +59,7 @@
             "actual": "0",
             "passed": true,
             "exit_code": 0,
-            "execution_time_ms": 59.5282000140287,
+            "execution_time_ms": 79.27180000115186,
             "error": null
         },
         {
@@ -64,7 +69,7 @@
             "actual": "2147483647",
             "passed": true,
             "exit_code": 0,
-            "execution_time_ms": 86.95109997643158,
+            "execution_time_ms": 82.44169998215511,
             "error": null
         },
         {
@@ -74,7 +79,7 @@
             "actual": "-2147483648",
             "passed": true,
             "exit_code": 0,
-            "execution_time_ms": 81.3338000443764,
+            "execution_time_ms": 85.14700003433973,
             "error": null
         }
     ]

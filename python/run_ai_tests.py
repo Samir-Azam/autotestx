@@ -13,6 +13,8 @@ sys.path.insert(0, str(PYTHON_DIR))
 
 
 from autotestx.executor import run_executable
+from autotestx.database import TestDatabase
+from autotestx.failure_analyzer import AIFailureAnalyzer
 
 
 AI_TEST_FILE = (
@@ -35,10 +37,16 @@ RESULT_FILE = (
     / "ai_test_results.json"
 )
 
+DATABASE_FILE = (
+    RESULTS_DIR
+    / "test_results.db"
+)
+
 
 def load_ai_tests():
 
     if not AI_TEST_FILE.exists():
+
         raise FileNotFoundError(
             f"AI test file not found: {AI_TEST_FILE}"
         )
@@ -80,6 +88,12 @@ def main():
 
     config = load_ai_tests()
 
+    database = TestDatabase(
+        DATABASE_FILE
+    )
+
+    analyzer = AIFailureAnalyzer()
+
     executable_name = config["executable"]
 
     executable = (
@@ -89,9 +103,17 @@ def main():
 
     test_cases = config["tests"]
 
-    print(f"\nTarget: {executable_name}")
-    print(f"AI Test Cases: {len(test_cases)}")
-    print(f"Executable: {executable}")
+    print(
+        f"\nTarget: {executable_name}"
+    )
+
+    print(
+        f"AI Test Cases: {len(test_cases)}"
+    )
+
+    print(
+        f"Executable: {executable}"
+    )
 
     if not executable.exists():
 
@@ -103,6 +125,8 @@ def main():
             "Build the project before running AI tests."
         )
 
+        database.close()
+
         sys.exit(2)
 
     results = []
@@ -110,8 +134,13 @@ def main():
     passed = 0
     failed = 0
 
-    print("\nRunning AI-generated tests...")
-    print("--------------------------------")
+    print(
+        "\nRunning AI-generated tests..."
+    )
+
+    print(
+        "--------------------------------"
+    )
 
     for test in test_cases:
 
@@ -137,24 +166,26 @@ def main():
             "error": result.error
         }
 
-        results.append(test_result)
-
         if result.passed:
 
             print("[PASS]")
+
             passed += 1
 
         else:
 
             print("[FAIL]")
+
             failed += 1
 
         print(
-            f"  Expected: {test['expected'].strip()}"
+            f"  Expected: "
+            f"{test['expected'].strip()}"
         )
 
         print(
-            f"  Actual:   {result.stdout}"
+            f"  Actual:   "
+            f"{result.stdout}"
         )
 
         print(
@@ -165,8 +196,77 @@ def main():
         if result.error:
 
             print(
-                f"  Error:    {result.error}"
+                f"  Error:    "
+                f"{result.error}"
             )
+
+            # -----------------------------------------
+            # AI FAILURE ANALYSIS
+            # -----------------------------------------
+
+            print(
+                "\n  AI Failure Analysis"
+            )
+
+            print(
+                "  --------------------------------"
+            )
+
+            try:
+
+                analysis = analyzer.analyze_failure(
+                    test_result
+                )
+
+                test_result["ai_analysis"] = analysis
+
+                print(
+                    f"  Likely Cause: "
+                    f"{analysis['likely_cause']}"
+                )
+
+                print(
+                    f"  Severity: "
+                    f"{analysis['severity']}"
+                )
+
+                print(
+                    f"  Suggested Fix: "
+                    f"{analysis['suggested_fix']}"
+                )
+
+            except Exception as error:
+
+                print(
+                    f"  AI analysis failed: "
+                    f"{error}"
+                )
+
+                test_result["ai_analysis"] = {
+                    "likely_cause": (
+                        "AI analysis unavailable."
+                    ),
+                    "severity": "UNKNOWN",
+                    "suggested_fix": (
+                        "Review the test failure manually."
+                    )
+                }
+
+            print(
+                "  --------------------------------"
+            )
+
+        results.append(
+            test_result
+        )
+
+        # -----------------------------------------
+        # STORE RESULT IN SQLITE
+        # -----------------------------------------
+
+        database.insert_result(
+            test_result
+        )
 
     summary = {
         "total": len(test_cases),
@@ -181,32 +281,61 @@ def main():
         "tests": results
     }
 
-    save_results(report)
+    save_results(
+        report
+    )
 
-    print("\n================================")
-    print("          Test Summary")
-    print("================================")
+    database.close()
 
-    print(f"Total : {summary['total']}")
-    print(f"Passed: {summary['passed']}")
-    print(f"Failed: {summary['failed']}")
+    print(
+        "\n================================"
+    )
+
+    print(
+        "          Test Summary"
+    )
+
+    print(
+        "================================"
+    )
+
+    print(
+        f"Total : {summary['total']}"
+    )
+
+    print(
+        f"Passed: {summary['passed']}"
+    )
+
+    print(
+        f"Failed: {summary['failed']}"
+    )
 
     print(
         f"\nResult file: {RESULT_FILE}"
     )
 
+    print(
+        f"Database:    {DATABASE_FILE}"
+    )
+
     if failed == 0:
 
-        print("\nRESULT: ALL AI TESTS PASSED")
+        print(
+            "\nRESULT: ALL AI TESTS PASSED"
+        )
 
         sys.exit(0)
 
     else:
 
-        print("\nRESULT: AI TEST FAILURES DETECTED")
+        print(
+            "\nRESULT: AI TEST FAILURES DETECTED"
+        )
 
         sys.exit(1)
 
 
 if __name__ == "__main__":
+
     main()
