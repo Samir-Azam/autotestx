@@ -15,3 +15,7 @@ target_include_directories(autotestx
     PRIVATE
     include
 )
+
+add_executable(calculator_program
+    ../examples/calculator_program.cpp
+)

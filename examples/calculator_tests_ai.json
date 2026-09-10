@@ -1,0 +1,40 @@
+{
+    "executable": "calculator_program.exe",
+    "tests": [
+        {
+            "name": "Sum of two positive integers",
+            "input": "15\n25\n",
+            "expected": "40"
+        },
+        {
+            "name": "Sum of two zeros",
+            "input": "0\n0\n",
+            "expected": "0"
+        },
+        {
+            "name": "Sum of zero and negative integer",
+            "input": "0\n-7\n",
+            "expected": "-7"
+        },
+        {
+            "name": "Sum of two negative integers",
+            "input": "-12\n-8\n",
+            "expected": "-20"
+        },
+        {
+            "name": "Sum of positive and negative integer resulting in zero",
+            "input": "50\n-50\n",
+            "expected": "0"
+        },
+        {
+            "name": "Boundary test - 32-bit signed integer upper limit",
+            "input": "2147483640\n7\n",
+            "expected": "2147483647"
+        },
+        {
+            "name": "Boundary test - 32-bit signed integer lower limit",
+            "input": "-2147483640\n-8\n",
+            "expected": "-2147483648"
+        }
+    ]
+}

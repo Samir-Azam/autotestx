@@ -1,0 +1,30 @@
+{
+    "executable": "calculator_program.exe",
+    "tests": [
+        {
+            "name": "positive numbers",
+            "input": "10 20",
+            "expected": "30"
+        },
+        {
+            "name": "negative second number",
+            "input": "100 -25",
+            "expected": "75"
+        },
+        {
+            "name": "zero values",
+            "input": "0 0",
+            "expected": "0"
+        },
+        {
+            "name": "negative numbers",
+            "input": "-10 -5",
+            "expected": "-15"
+        },
+        {
+            "name": "intentional failure",
+            "input": "10 5",
+            "expected": "20"
+        }
+    ]
+}

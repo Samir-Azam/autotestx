@@ -1,0 +1,60 @@
+{
+    "target": "calculator_program.exe",
+    "summary": {
+        "total": 5,
+        "passed": 4,
+        "failed": 1
+    },
+    "tests": [
+        {
+            "name": "positive numbers",
+            "passed": true,
+            "input": "10 20",
+            "expected": "30",
+            "actual": "30",
+            "exit_code": 0,
+            "execution_time_ms": 103.3295999513939,
+            "error": null
+        },
+        {
+            "name": "negative second number",
+            "passed": true,
+            "input": "100 -25",
+            "expected": "75",
+            "actual": "75",
+            "exit_code": 0,
+            "execution_time_ms": 653.5352999926545,
+            "error": null
+        },
+        {
+            "name": "zero values",
+            "passed": true,
+            "input": "0 0",
+            "expected": "0",
+            "actual": "0",
+            "exit_code": 0,
+            "execution_time_ms": 167.9844000027515,
+            "error": null
+        },
+        {
+            "name": "negative numbers",
+            "passed": true,
+            "input": "-10 -5",
+            "expected": "-15",
+            "actual": "-15",
+            "exit_code": 0,
+            "execution_time_ms": 157.8078999882564,
+            "error": null
+        },
+        {
+            "name": "intentional failure",
+            "passed": false,
+            "input": "10 5",
+            "expected": "20",
+            "actual": "15",
+            "exit_code": 0,
+            "execution_time_ms": 178.4658000105992,
+            "error": "Output mismatch | Expected: 20 | Actual: 15"
+        }
+    ]
+}
