@@ -1,0 +1,33 @@
+{
+  "summary": {
+    "total": 4,
+    "passed": 3,
+    "failed": 1
+  },
+  "tests": [
+    {
+      "name": "addition",
+      "passed": true,
+      "message": "Test passed",
+      "execution_time_ms": 0.0108
+    },
+    {
+      "name": "subtraction",
+      "passed": true,
+      "message": "Test passed",
+      "execution_time_ms": 0.0054
+    },
+    {
+      "name": "multiplication",
+      "passed": true,
+      "message": "Test passed",
+      "execution_time_ms": 0.0052
+    },
+    {
+      "name": "failing test",
+      "passed": false,
+      "message": "calculator.add(2, 2) | Expected: 10 | Actual: 4",
+      "execution_time_ms": 0.1139
+    }
+  ]
+}

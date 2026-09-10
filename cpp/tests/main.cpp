@@ -1,5 +1,6 @@
 #include "Calculator.h"
 #include "TestFramework.h"
+#include <iostream>
 
 Calculator calculator;
 
@@ -20,5 +21,14 @@ TEST("failing test") {
 }
 
 int main() {
-    return TestRunner::instance().run();
+
+    TestRunner& runner = TestRunner::instance();
+
+    int exitCode = runner.run();
+
+    runner.writeJsonReport("results.json");
+
+    std::cout << "\nJSON report generated: results.json\n";
+
+    return exitCode;
 }

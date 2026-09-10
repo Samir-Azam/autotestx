@@ -3,6 +3,7 @@
 #include <chrono>
 #include <iostream>
 #include <stdexcept>
+#include <fstream>
 
 TestRunner& TestRunner::instance() {
     static TestRunner runner;
@@ -119,4 +120,61 @@ TestRegistrar::TestRegistrar(
     std::function<void()> function
 ) {
     TestRunner::instance().addTest(name, function);
+}
+
+void TestRunner::writeJsonReport(const std::string& filename) const {
+
+    std::ofstream file(filename);
+
+    if (!file.is_open()) {
+        throw std::runtime_error(
+            "Unable to create JSON report: " + filename
+        );
+    }
+
+    file << "{\n";
+
+    file << "  \"summary\": {\n";
+    file << "    \"total\": " << tests.size() << ",\n";
+    file << "    \"passed\": " << passedTests << ",\n";
+    file << "    \"failed\": " << failedTests << "\n";
+    file << "  },\n";
+
+    file << "  \"tests\": [\n";
+
+    for (size_t i = 0; i < results.size(); ++i) {
+
+        const auto& result = results[i];
+
+        file << "    {\n";
+
+        file << "      \"name\": \""
+             << result.name
+             << "\",\n";
+
+        file << "      \"passed\": "
+             << (result.passed ? "true" : "false")
+             << ",\n";
+
+        file << "      \"message\": \""
+             << result.message
+             << "\",\n";
+
+        file << "      \"execution_time_ms\": "
+             << result.executionTimeMs
+             << "\n";
+
+        file << "    }";
+
+        if (i + 1 < results.size()) {
+            file << ",";
+        }
+
+        file << "\n";
+    }
+
+    file << "  ]\n";
+    file << "}\n";
+
+    file.close();
 }

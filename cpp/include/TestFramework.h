@@ -29,6 +29,8 @@ public:
 
     const std::vector<TestResult>& getResults() const;
 
+    void writeJsonReport(const std::string& filename) const;
+
 private:
     TestRunner() = default;
 
