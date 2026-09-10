@@ -1,0 +1,81 @@
+{
+    "source": "Gemini AI-generated tests",
+    "target": "calculator_program.exe",
+    "summary": {
+        "total": 7,
+        "passed": 7,
+        "failed": 0
+    },
+    "tests": [
+        {
+            "name": "Sum of two positive integers",
+            "input": "15\n25\n",
+            "expected": "40",
+            "actual": "40",
+            "passed": true,
+            "exit_code": 0,
+            "execution_time_ms": 109.55699998885393,
+            "error": null
+        },
+        {
+            "name": "Sum of two zeros",
+            "input": "0\n0\n",
+            "expected": "0",
+            "actual": "0",
+            "passed": true,
+            "exit_code": 0,
+            "execution_time_ms": 112.4095999985002,
+            "error": null
+        },
+        {
+            "name": "Sum of zero and negative integer",
+            "input": "0\n-7\n",
+            "expected": "-7",
+            "actual": "-7",
+            "passed": true,
+            "exit_code": 0,
+            "execution_time_ms": 87.9801000119187,
+            "error": null
+        },
+        {
+            "name": "Sum of two negative integers",
+            "input": "-12\n-8\n",
+            "expected": "-20",
+            "actual": "-20",
+            "passed": true,
+            "exit_code": 0,
+            "execution_time_ms": 44.619299995247275,
+            "error": null
+        },
+        {
+            "name": "Sum of positive and negative integer resulting in zero",
+            "input": "50\n-50\n",
+            "expected": "0",
+            "actual": "0",
+            "passed": true,
+            "exit_code": 0,
+            "execution_time_ms": 43.698999972548336,
+            "error": null
+        },
+        {
+            "name": "Boundary test - 32-bit signed integer upper limit",
+            "input": "2147483640\n7\n",
+            "expected": "2147483647",
+            "actual": "2147483647",
+            "passed": true,
+            "exit_code": 0,
+            "execution_time_ms": 52.04010003944859,
+            "error": null
+        },
+        {
+            "name": "Boundary test - 32-bit signed integer lower limit",
+            "input": "-2147483640\n-8\n",
+            "expected": "-2147483648",
+            "actual": "-2147483648",
+            "passed": true,
+            "exit_code": 0,
+            "execution_time_ms": 46.355800004675984,
+            "error": null
+        }
+    ]
+}
