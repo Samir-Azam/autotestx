@@ -14,7 +14,7 @@
             "actual": "40",
             "passed": true,
             "exit_code": 0,
-            "execution_time_ms": 109.55699998885393,
+            "execution_time_ms": 98.40900002745911,
             "error": null
         },
         {
@@ -24,7 +24,7 @@
             "actual": "0",
             "passed": true,
             "exit_code": 0,
-            "execution_time_ms": 112.4095999985002,
+            "execution_time_ms": 78.75119999516755,
             "error": null
         },
         {
@@ -34,7 +34,7 @@
             "actual": "-7",
             "passed": true,
             "exit_code": 0,
-            "execution_time_ms": 87.9801000119187,
+            "execution_time_ms": 48.70670003583655,
             "error": null
         },
         {
@@ -44,7 +44,7 @@
             "actual": "-20",
             "passed": true,
             "exit_code": 0,
-            "execution_time_ms": 44.619299995247275,
+            "execution_time_ms": 45.26430001715198,
             "error": null
         },
         {
@@ -54,7 +54,7 @@
             "actual": "0",
             "passed": true,
             "exit_code": 0,
-            "execution_time_ms": 43.698999972548336,
+            "execution_time_ms": 59.5282000140287,
             "error": null
         },
         {
@@ -64,7 +64,7 @@
             "actual": "2147483647",
             "passed": true,
             "exit_code": 0,
-            "execution_time_ms": 52.04010003944859,
+            "execution_time_ms": 86.95109997643158,
             "error": null
         },
         {
@@ -74,7 +74,7 @@
             "actual": "-2147483648",
             "passed": true,
             "exit_code": 0,
-            "execution_time_ms": 46.355800004675984,
+            "execution_time_ms": 81.3338000443764,
             "error": null
         }
     ]
