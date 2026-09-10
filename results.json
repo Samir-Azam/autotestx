@@ -9,7 +9,7 @@
       "name": "addition",
       "passed": true,
       "message": "Test passed",
-      "execution_time_ms": 0.0108
+      "execution_time_ms": 0.004
     },
     {
       "name": "subtraction",
@@ -21,13 +21,13 @@
       "name": "multiplication",
       "passed": true,
       "message": "Test passed",
-      "execution_time_ms": 0.0052
+      "execution_time_ms": 0.0025
     },
     {
       "name": "failing test",
       "passed": false,
       "message": "calculator.add(2, 2) | Expected: 10 | Actual: 4",
-      "execution_time_ms": 0.1139
+      "execution_time_ms": 0.0953
     }
   ]
 }
